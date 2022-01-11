@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承</title>
+</head>
+<body>
+<script>
+    /* 原型链继承
+    * 缺点：父类的引用类型属性被所有子类共享
+    *
+    * */
+    // function Animal(name) {
+    //     this.color = ['green','red','blue'];
+    //     this.name = name || 'animal';
+    //     this.sleep = function() {
+    //         console.log(this.name + "正在睡觉")
+    //     }
+    // }
+    // Animal.prototype.eat = function(food) {
+    //     console.log(this.name + '正在吃' + food);
+    // }
+    // function Cat(name) {
+    //     this.name = name;
+    // }
+    // Cat.prototype = new Animal();
+    // let cat = new Cat("小花猫")
+    // let cat2 = new Cat("小黑猫")
+    // cat.sleep()
+    // cat2.sleep()
+
+    /*构造函数继承
+    * 缺点：不能继承父类原型上的属性和方法
+    * */
+    // function Animal(name) {
+    //     this.color = ['green','red','blue'];
+    //     this.name = name || 'animal';
+    //     this.sleep = function() {
+    //         console.log(this.name + "正在睡觉")
+    //     }
+    // }
+    // Animal.prototype.eat = function(food) {
+    //     console.log(this.name + '正在吃' + food);
+    // }
+    // function Cat(name) {
+    //     this.name = name;
+    //     Animal.call(this,"小白猫")
+    // }
+    // let cat3 = new Cat();
+    // cat3.sleep()
+
+    /*组合继承
+    * 原型链继承+构造函数继承
+    * */
+    // function Animal(name) {
+    //     this.color = ['green','red','blue'];
+    //     this.name = name || 'animal';
+    //     this.sleep = function() {
+    //         console.log(this.name + "正在睡觉")
+    //     }
+    // }
+    // Animal.prototype.eat = function(food) {
+    //     console.log(this.name + '正在吃' + food);
+    // }
+    // function Cat(name) {
+    //     this.name = name;
+    //     Animal.call(this,"小白猫")
+    // }
+    // Cat.prototype = new Animal();
+    // let cat3 = new Cat();
+    // cat3.sleep()
+    // cat3.eat('猫粮')
+
+    /*寄生组合式继承
+    * 完美
+    * */
+    // 实现继承的核心函数
+    // function inheritPrototype(subType,superType) {
+    //     function F() {};
+    //     //F()的原型指向的是superType
+    //     F.prototype = superType.prototype;
+    //     //subType的原型指向的是F()
+    //     subType.prototype = new F();
+    //     // 重新将构造函数指向自己，修正构造函数
+    //     subType.prototype.constructor = subType;
+    // }
+    // // 设置父类
+    // function SuperType(name) {
+    //     this.name = name;
+    //     this.colors = ["red", "blue", "green"];
+    //     SuperType.prototype.sayName = function () {
+    //         console.log(this.name)
+    //     }
+    // }
+    // // 设置子类
+    // function SubType(name, age) {
+    //     //构造函数式继承--子类构造函数中执行父类构造函数
+    //     SuperType.call(this, name);
+    //     this.age = age;
+    // }
+    // // 核心：因为是对父类原型的复制，所以不包含父类的构造函数，也就不会调用两次父类的构造函数造成浪费
+    // inheritPrototype(SubType, SuperType)
+    // // 添加子类私有方法
+    // SubType.prototype.sayAge = function () {
+    //     console.log(this.age);
+    // }
+    // let instance = new SubType("Taec",18)
+    // instance.sayName()
+    // console.log(instance.colors)
+
+    /*
+    * 寄生组合-自己理解的实现
+    * 核心：声明一个空函数，让这个空函数的prototype=父类的prototype,然后让子类的.prototype指向空函数的实例
+    * */
+    function Super(name) {
+        this.name = name
+        this.say = function (name) {
+            console.log(`My name is ${name}`)
+        }
+        Super.prototype.run = function () {
+            console.log(`${name} is running`)
+        }
+    }
+    function SubType(name) {
+        Super.call(this,'张三')
+        this.name = name;
+    }
+
+    function F(){}
+    F.prototype = Super.prototype;
+    SubType.prototype = new F();
+    SubType.prototype.constructor = SubType;
+
+    let sub = new SubType('李四')
+    console.log(sub.name)
+    sub.say('王五')
+    sub.run()
+    console.log(SubType.prototype.constructor)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

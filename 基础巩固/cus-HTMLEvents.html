@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTMLEvents</title>
+</head>
+<body>
+<script>
+    <!-- 兼容IE的话用这种方式 -->
+    var event = document.createEvent('HTMLEvents');
+    event.initEvent('test', true, true);
+    document.body.addEventListener('test',function (e){
+        console.log(e)
+        const h1 = document.createElement('h1');
+        h1.innerText = '哈哈';
+        e.target.appendChild(h1);
+    },false)
+    setTimeout(()=> {
+        document.body.dispatchEvent(event)
+    },1000)
+</script>
+</body>
+</html>
+7

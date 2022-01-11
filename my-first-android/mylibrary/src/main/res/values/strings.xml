@@ -1,0 +1,3 @@
+<resources>
+    <string name="load_error">Unable to connect to the network</string>
+</resources>

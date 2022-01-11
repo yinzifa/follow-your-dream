@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原生事件委托</title>
+</head>
+<body>
+  <div>
+    <ul id="ul-list">
+      <li id="1">item1</li>
+      <li id="2">item2</li>
+      <li id="3">item3</li>
+      <li id="4">item4</li>
+      <li id="5">item5</li>
+    </ul>
+  </div>
+<script>
+  let ulDom = document.querySelector("#ul-list");
+  function cb(e) {
+    console.log(e.target)
+    console.log(e.target.id)
+  }
+  ulDom.addEventListener('click',cb)
+  // ulDom.removeEventListener('click',cb)
+</script>
+</body>
+</html>

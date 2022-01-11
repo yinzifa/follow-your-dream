@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>防抖</title>
+</head>
+<body>
+<script>
+    /*
+    * 理解：让指定函数在指定时间内只执行最后一次，在此期间重复触发则重新开始计时,执行时间会不断延迟
+    * 目的：执行次数取决于触发时机
+    * 场景：输入框输入回调
+    * */
+    //实现
+    function debounce(fn,wait) {
+        let timer = null;
+        return function () {
+            if(timer) clearTimeout(timer);
+            timer = setTimeout(()=> {
+                fn.apply(this,arguments)
+            },wait)
+        }
+    }
+    /*
+    * 加强版
+    * immediate为ture时 首次立即执行
+    * */
+    // function debounce(fn,wait,immediate) {
+    //     let timer = null;
+    //     return function () {
+    //         if(timer) clearTimeout(timer);
+    //
+    //         //首次执行
+    //         if(immediate && !timer) {
+    //             fn.apply(this,arguments)
+    //         }
+    //
+    //         timer = setTimeout(()=> {
+    //             fn.apply(this,arguments)
+    //         },wait)
+    //     }
+    // }
+    window.addEventListener('mousemove',debounce(()=> {
+        console.log("======")
+    },500,true))
+</script>
+</body>
+</html>

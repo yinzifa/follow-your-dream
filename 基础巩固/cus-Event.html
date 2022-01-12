@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+</head>
+<body>
+    <script>
+        let event = new Event('test');
+        document.body.addEventListener('test',function (e){
+            const h1 = document.createElement('h1');
+            h1.innerText = '哈哈';
+            e.target.appendChild(h1);
+        },false)
+        setTimeout(()=> {
+            document.body.dispatchEvent(event)
+        },1000)
+    </script>
+</body>
+</html>

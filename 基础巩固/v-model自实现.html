@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text">
+    <p id="content"></p>
+</div>
+
+<script>
+    let input = document.querySelector('input')
+    let content = document.querySelector('#content')
+    let data = {
+        msg: '我是数据'
+    }
+    //1.监听视图(input输入框)数值改变,将实时改变的值给到数据层
+    input.addEventListener('input', () => {
+        data.msg = input.value;
+        content.innerText = input.value;
+    })
+    //2.将原始数据层的值赋给视图中的input输入框
+    input.value = data.msg
+    //定义一个变量保存数据层的数据
+    let temp = data.msg
+    Object.defineProperty(data, 'msg', {
+        get() {
+            return temp
+        },
+        //3.劫持数据变动的值,每次变动都劫持下来赋给视图层和数据层
+        set(value) {
+            input.value = value
+            return (temp = value)
+        }
+    })
+</script>
+
+</body>
+</html>

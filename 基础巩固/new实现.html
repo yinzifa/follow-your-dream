@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>new关键字实现</title>
+</head>
+<body>
+<script>
+    function MyNew() {
+        let fn = [].shift.call(arguments);
+        let obj = Object.create(fn.prototype);
+        let result = fn.call(obj,...arguments);
+        if(typeof result === "object") {
+            return result;
+        }
+        return obj;
+    }
+
+    function Fn(name) {
+        this.name= name
+    }
+    // let test = Object.create(Fn.prototype)
+    //
+    // console.log(test instanceof Fn)
+    // console.log(typeof test)
+    // console.log(test.__proto__)
+    // console.log(test.constructor == Fn)
+    // console.log(test.name)
+
+    let fn = new Fn('123')
+    console.log(fn instanceof Fn)
+    console.log(typeof fn)
+    console.log(fn.__proto__)
+    console.log(fn.constructor)
+    console.log(fn.name)
+
+    let a = MyNew(Fn,"456")
+    console.log(a instanceof Fn)
+    console.log(typeof a)
+    console.log(a.__proto__)
+    console.log(a.constructor)
+    console.log(a.name)
+
+
+</script>
+</body>
+</html>

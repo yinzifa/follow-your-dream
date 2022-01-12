@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>观察者模式</title>
+</head>
+<body>
+<script>
+    let observer_ids=0;
+    let observed_ids=0;
+    /*
+    * 观察者类
+    * 有一个update方法
+    * */
+    class Observer {
+        constructor() {
+            this.id = observer_ids++;
+        }
+        update(sub) {
+            console.log("观察者" + this.id + `-检测到被观察者${sub.id}变化`)
+        }
+    }
+
+    class Subject {
+        constructor() {
+            this.observers = [];
+            this.id = observed_ids++;
+        }
+        //添加观察者
+        addObserver(observer) {
+            this.observers.push(observer)
+        }
+        //删除观察者
+        removeObserver(observer) {
+            this.observers = this.observers.filter(o => {
+                return o.id != observer.id;
+            });
+        }
+        //通知所有的观察者
+        notify() {
+            this.observers.forEach(observer => {
+                observer.update(this);
+            });
+        }
+    }
+
+    const subject = new Subject();
+    const mObserver1 = new Observer();
+    const mObserver2 = new Observer();
+
+    subject.addObserver(mObserver1);
+    subject.addObserver(mObserver2);
+    subject.notify()
+
+</script>
+</body>
+</html>

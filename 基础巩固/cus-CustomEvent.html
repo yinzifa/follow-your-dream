@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CustomEvent</title>
+</head>
+<body>
+<script>
+<!--    需要传递参数的话用CustomEvent，需要注意的是参数只能通过detail传递 -->
+    let event = new CustomEvent('test',{detail: {name:'yzf'}});
+    document.body.addEventListener('test',function (e){
+        const h1 = document.createElement('h1');
+        h1.innerText = e.detail.name;
+        e.target.appendChild(h1);
+    },false)
+    setTimeout(()=> {
+        document.body.dispatchEvent(event)
+    },1000)
+</script>
+</body>
+</html>

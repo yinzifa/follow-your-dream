@@ -1,0 +1,25 @@
+<resources>
+    <!-- 定义一个样式，继承android系统的对话框样式 android:style/Theme.Dialog-->
+    <style name="FloatActivity" parent="android:style/Theme.Dialog">
+        <!-- 去黑边 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 设置是否悬浮 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 设置是否透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无ActionBar -->
+        <item name="android:windowActionBar">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 背景 -->
+        <item name="android:background">@null</item>
+        <!-- 窗口背景 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 点击空白部分activity不消失 -->
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <!-- 设置窗体内容背景-->
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+</resources>

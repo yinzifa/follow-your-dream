@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节流</title>
+</head>
+<body>
+<script>
+    /*
+    * 理解：让指定函数在一定时间间隔内只执行一次，此时间间隔内重复触发会被无视
+    * 目标：稀释函数的执行频率
+    * 场景：window.mousemove事件、window.onresize事件、window.scroll事件
+    * */
+    //实现1
+    // function throttle(fn,wait) {
+    //     let timer = null;
+    //     return function () {
+    //         if(!timer) {
+    //             timer = setTimeout(()=> {
+    //                 timer = null
+    //                 fn.apply(this,arguments)
+    //             },wait)
+    //         }
+    //     }
+    // }
+    //实现2
+    function throttle(fn,wait) {
+        let prev = 0;
+        return function () {
+            let now = Date.now();
+            if(now - prev > wait) {
+                prev = now
+                fn.apply(this,arguments)
+            }
+        }
+    }
+    /*
+    * 加强版
+    * immediate为ture时 首次立即执行
+    * */
+
+    // function throttle(fn,wait,immediate) {
+    //     let prev = 0;
+    //     return function () {
+    //         let now = Date.now();
+    //         if(immediate && prev === 0) {
+    //             fn.apply(this,arguments)
+    //         }
+    //         if(now - prev > wait) {
+    //             prev = now
+    //             fn.apply(this,arguments)
+    //         }
+    //     }
+    // }
+
+    window.addEventListener('mousemove',throttle(()=> {
+        console.log("======")
+    },500))
+</script>
+</body>
+</html>

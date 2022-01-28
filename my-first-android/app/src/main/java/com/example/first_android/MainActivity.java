@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.mylibrary.MyMainActivity;
+import com.cyou.rampage_android_sdk.RampageSDK;
+//import com.example.mylibrary.MyMainActivity;
 
 public class MainActivity extends AppCompatActivity {
     private EditText etAppkey, etTenantid, etRoleid, etServiceKey, etServiceSecret;
@@ -116,9 +117,10 @@ public class MainActivity extends AppCompatActivity {
         btnOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyMainActivity.class);
+//                Intent intent = new Intent(MainActivity.this, MyMainActivity.class);
 //                GameAssistant.start(MainActivity.this);
-                MyMainActivity.init(MainActivity.this);
+//                MyMainActivity.init(MainActivity.this);
+                RampageSDK.test(MainActivity.this, "https://visitor.one.cn/#/?platform=1&pushId=1234567890&os=2&deviceNo=00000000-5cec-a0ff-ffff-ffffef05ac4a&currentTime=1626249217259&serviceKey=3ad7095a-3b46-4e44-bfaa-74e90bf77b84&code=760092f9a6f039f5327998cafc3f426b");
             }
         });
     }

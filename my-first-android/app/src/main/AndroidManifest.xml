@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.cyou.rampage_android_sdk.activity.Rampage_android_sdkActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
     </application>
 
 </manifest>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.assign拷贝</title>
+</head>
+<body>
+<script>
+  /*
+  * 对于简单对象是深拷贝
+  * */
+  let a = {
+    name: "张三",
+    age: 28
+  }
+ let b = Object.assign({},a);
+  a.age = 29;
+  b.name = "张三b";
+  console.log(a)
+  console.log(b)
+
+  /*
+  * 对于复杂对象是浅拷贝
+  * JSON.stringify对于标准的简单JSON可以深拷贝，如果对象中有function或者regexp则不能用这个方法
+  * */
+  let obj = {
+    name: '李四',
+    work: {
+      time: 8,
+      fn: function (text) {
+          console.log(1)
+      }
+    }
+  }
+  let obj1 = Object.assign({},obj);
+  let obj2 = JSON.parse(JSON.stringify(obj))
+
+  // obj.work.fn()
+  // console.log(obj1)
+  console.log(obj2)
+  // obj2.work.fn()
+
+  //手写deepClone方法
+  function deepClone(source) {
+      let newObj;
+      if(typeof source === "object") {
+          newObj = Array.isArray(source) ? [] : {};
+          for (let key in source) {
+              if(source.hasOwnProperty(key)) {
+                  newObj[key] = typeof source[key] === 'object' ? deepClone(source[key]) : source[key]
+              }
+          }
+      }else {
+          newObj = source;
+      }
+      return newObj;
+  }
+
+  let obj3 = deepClone(obj);
+  obj.work.time = 9
+  console.log(obj3)
+
+</script>
+</body>
+</html>

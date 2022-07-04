@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>播放器</title>
+    <script type="text/javascript" src="./uplayer.min.js"></script>
+</head>
+<body>
+<div id="video_div" style="width: 640px;height: 360px"></div>
+<script>
+    /**
+     * 播放函数说明:
+     * @param {string} url   视频地址，支持hls,mp4,rtmp,http-flv协议.
+     * @param {string} divId 视频播放窗口的div的id
+     * @param {string} format 视频流格式，可以是： flv, hls, rtmp, mp4等
+     */
+    play("https://apd-b2606bf8a4f6f12a282085519ee7f54b.v.smtcdns.com/variety.tc.qq.com/AkpfKcReX0HYRKOuyWDDBE2KPqaDUZfA5f5q-ATsGCxA/svp_50134/gzc_1000127_0b537mbxuaadc4apn4vc2jrnl66dpl6ag7ka.f10201.mp4?level=0&vkey=2CE127955A0D84CECE6242481D033F0F4D83EAB2C49016D28B74A5343027B0D53BC7FEF957680431D1CC6B1A4EA3D40477A599955C9172D3F8BD113C03CDDAF1FA8AD956A9D89525C5155F06DC30DC116BF84F8556DF4F258891B88AE72C3DEDBC56718F0654C463581555E756C49F33E85AD74C861B06A3&platform=10201&fmt=shd","video_div","hls");
+</script>
+</body>
+</html>

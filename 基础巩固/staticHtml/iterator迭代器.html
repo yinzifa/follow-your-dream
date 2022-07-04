@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generator 迭代器</title>
+</head>
+<body>
+<script>
+    function* effect() {
+        yield A();
+        const { result } = yield B();
+        console.table(result);
+        yield C()
+    }
+    function A() {
+       return new Promise((resolve)=> {
+           setTimeout(()=> {
+               resolve(100)
+           },600)
+       })
+    }
+    function B() {
+        console.log("2222222222")
+        return "333333"
+    }
+    function C() {
+        console.log("end")
+    }
+
+    const iterator = effect();
+    let promise = iterator.next().value;
+    // console.log(iterator.next())
+    promise.then((res)=> {
+        console.log(res)
+        console.log(iterator.next())
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深拷贝</title>
+</head>
+<body>
+<script>
+    let a = {
+        name: 123,
+        work: {
+            age: 456,
+            xxx: {
+                h: 789
+            }
+        }
+    }
+    function deepClone(obj) {
+        let newObj = {};
+        if(typeof obj === 'object') {
+            for (let objKey in obj) {
+                newObj[objKey] = typeof obj[objKey] === 'object' ? deepClone(obj[objKey]): obj[objKey]
+            }
+        }else {
+            newObj = obj;
+        }
+        return newObj;
+    }
+    console.log(deepClone(a))
+</script>
+</body>
+</html>

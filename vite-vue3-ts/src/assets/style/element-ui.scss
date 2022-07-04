@@ -1,0 +1,109 @@
+$--colors: (
+        "primary": (
+                "base": #376dff,
+        ),
+        "success": (
+                "base": #74c041,
+        ),
+        "warning": (
+                "base": #f2711c,
+        ),
+        "danger": (
+                "base": #f4222c,
+        ),
+        "error": (
+                "base": #f4222c,
+        ),
+        "info": (
+                "base": #94affa,
+        ),
+);
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: "element-plus/theme-chalk/fonts";
+
+// You should use them in scss, because we calculate it by sass.
+// comment next lines to use default color
+@forward "element-plus/theme-chalk/src/common/var.scss" with
+  (
+    // do not use same name, it will override.
+    $colors: $--colors,
+    $button-padding-horizontal: ("default": 50px)
+  );
+
+// If you just import on demand, you can ignore the following content.
+// 如果你想导入所有样式:
+@use "element-plus/theme-chalk/src/index.scss" as *;
+.el-dropdown-menu__item {
+    font-size: 12px !important;
+    line-height: 28px !important;
+}
+.el-card.is-always-shadow {
+    box-shadow: none;
+    border: none !important;
+}
+
+.el-menu--horizontal {
+    border-bottom: none !important;
+}
+
+.el-menu {
+    border-right: none !important;
+}
+
+.el-message__icon,
+.el-message__content {
+    display: inline-block;
+}
+
+.el-date-editor .el-range-input,
+.el-date-editor .el-range-separator {
+    height: auto;
+    overflow: hidden;
+}
+
+.el-dialog__wrapper {
+    z-index: 2048;
+}
+
+
+.el-col {
+    margin-bottom: 8px;
+}
+
+.el-main {
+    padding: 0 !important;
+}
+.el-dropdown-menu__item--divided:before, .el-menu, .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-submenu .el-submenu__title:hover {
+    background-color:transparent;
+}
+
+.el-dropdown-menu__item--divided:before, .el-menu, .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-submenu .el-submenu__title:hover{
+    background-color: transparent !important;
+}
+
+//表头背景色
+.el-table th {
+    background-color: #f9f9f9!important;
+}
+//表头字体色
+.el-table__header .cell {
+  color: #262626!important;
+}
+
+.el-pagination {
+  margin-top: 10px;
+  text-align: right;
+}
+.el-pagination__sizes .el-input__inner {
+  height: 30px;
+}
+.el-pagination .el-input__suffix {
+  right: 5px;
+}
+.el-pagination__jump {
+  margin-left: 0;
+}
+.el-button {
+  padding: 8px 25px;
+}

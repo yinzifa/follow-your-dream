@@ -10,19 +10,39 @@
 </body>
 </html>
 <script>
-    function A(name) {
-        this.name = name;
-    }
+   let arr = [1,2,3,4,5,6];
+   function observe(arr) {
+       for (let i = 0; i < arr.length; i++) {
+           let val = arr[i];
+           Object.defineProperty(arr,i,{
+               get() {
+                   return val
+               },
+               set(newval) {
+                   console.log("====")
+                   val = newval;
+               }
+           })
+       }
+   }
 
-    function MyNew() {
-        let fn = [].shift.call(arguments);
-        let obj = Object.create(fn.prototype)
-        fn.call(obj,...arguments);
-        return obj;
-    }
-    const a = MyNew(A,'yzf');
+   let arrayMethod = Object.create(Array.prototype);
+   let original = Array.prototype['pop'];
+   arrayMethod['push'] = function A() {
+       console.log('调用了push方法')
+       original.call(this,...arguments);
+   }
+   arr.__proto__ = arrayMethod;
 
-    console.log(a.name)
+
+
+   // observe(arr);
+   // console.log(arr[1])
+   // arr[1] = '22';
+   // console.log(arr[1])
+   console.log(arr)
+   arr.push(7)
+   console.log(arr)
 
 
 
